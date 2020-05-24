@@ -18,7 +18,7 @@ router.post('/login', (req, res) => {
         if (foundUser.length >= 1) {
           // Check if account is 'active'
           if (foundUser[0].activationCode != 'active') {
-            return res.send({ response: 'Please activate your account to login!' });
+            res.status(404).send( { response: 'Please activate your account to login!'} );
           } else {
             // Account is 'active'
             // Check if passwords match
@@ -38,7 +38,7 @@ router.post('/login', (req, res) => {
             }
           }
         } else {
-          return res.status(400).send({ response: 'User does not exist!' });
+          return res.status(500).send({ response: 'User does not exist!' });
         }
       });
     } catch (error) {
@@ -51,10 +51,6 @@ router.post('/login', (req, res) => {
 
 router.post('/signup', (req, res) => {
   const { username, password, passwordRepeat, email } = req.body;
-  console.log(username);
-  console.log(password);
-  console.log(passwordRepeat);
-  console.log(email);
 
   const isPasswordTheSame = password === passwordRepeat;
   // validate data

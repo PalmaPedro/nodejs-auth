@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -11,15 +12,11 @@ const navbarPage = fs.readFileSync("./public/navbar/navbar.html", "utf8");
 const footerPage = fs.readFileSync("./public/footer/footer.html", "utf8");
 const homePage = fs.readFileSync("./public/home/home.html", "utf8");
 const signupPage = fs.readFileSync("./public/signup/signup.html", "utf8");
-const profilePage = fs.readFileSync("./public/profile/profile.html", "utf8")
 const loginPage = fs.readFileSync("./public/login/login.html", "utf8");
+
 
 app.get('/', (req, res) => {
     return res.send(navbarPage + homePage + footerPage);
-});
-
-app.get('/profile', (req, res) => {
-    return res.send(navbarPage + profilePage);
 });
 
 app.get('/login', (req, res) => {

@@ -1,36 +1,28 @@
 const router = require('express').Router();
 const User = require('../models/User.js');
 const fs = require('fs');
-//const profilePage = fs.readFileSync("./public/profile/profile.html", "utf8");
-//const navbarPage = fs.readFileSync("./public/navbar/navbar.html", "utf8");
+const navbarPage = fs.readFileSync("./public/navbar/navbar.html", "utf8")
+const profilePage = fs.readFileSync("./public/profile/profile.html", "utf8")
 
-router.get('/users', async (req, res) => {
-    const allUsersWithElectives = await User.query().select('username').withGraphFetched('electives');
-    return res.send({ response: allUsersWithElectives });
-});
-
-router.get('/setSessionValue', (req, res) => {
-    console.log(req.session);
-    req.session.loggedin = true;
-    return res.send({ response: "OK " });
-});
-
-router.get('/getSessionValue', (req, res) => {
-    return res.send({ response: "OK" });
-})
-
-router.get('/current-user', (req, res) => {
-    // check if user is logged in
+// middleware to secure routes
+function requireLogin(req, res, next) {
     if (req.session.loggedin) {
+      next(); // allow the next route to run
+    } else {
+      // require the user to log in
+      return res.redirect("/login"); 
+    }
+  }
+
+router.get('/current-user', requireLogin, (req, res) => {
         const { username } = req.session;
         User.query().findOne({ username }).then(userfound => {
            return  res.status(200).json(userfound);
-        })
-    } else {
-        //return res.send({ response: 'Please login to view this page!' });
-         //Redirect to login page
-        return res.redirect('/');
-    }
+       })
+});
+
+router.get('/profile', requireLogin, (req, res) => {
+    return res.send(navbarPage + profilePage);
 });
 
 module.exports = router;

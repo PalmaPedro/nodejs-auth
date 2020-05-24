@@ -5,15 +5,18 @@
     </div>
     <form method="post" action="/login">
       <div class="control-group">
-        <input type="text" class="login-field" placeholder="Username" id="username" name="username" required/>
+        <input type="text"  class="login-field" placeholder="Username" id="username" name="username" required/>
       </div>
       <div class="control-group">
         <input type="password" class="login-field" placeholder="Password" id="password" name="password" required/>
       </div>
-      <button type="submit">Login</button>
+      <button id="submit">Login</button>
       <div>
-        <a class="login-link" href="#">Lost your password?</a>
+        <a class="login-link" href="#" autocomplete="on">Lost your password?</a>
       </div> 
     </form>
+    <div class="msg"></div>
   </div>
+
+  <script src="/login/login.js"></script>
 
