@@ -1,0 +1,13 @@
+# Dependencie directories
+/node_modules
+
+# mysql credentials
+mysqlCredentials.js
+
+# nodemailer credentials
+nodemailerCredentials.js
+
+# notes
+notes.txt
+
+config.json
