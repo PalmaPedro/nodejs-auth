@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const User = require('../models/User.js');
 const fs = require('fs');
-const profilePage = fs.readFileSync("./public/profile/profile.html", "utf8");
-const navbarPage = fs.readFileSync("./public/navbar/navbar.html", "utf8");
+//const profilePage = fs.readFileSync("./public/profile/profile.html", "utf8");
+//const navbarPage = fs.readFileSync("./public/navbar/navbar.html", "utf8");
 
 router.get('/users', async (req, res) => {
     const allUsersWithElectives = await User.query().select('username').withGraphFetched('electives');
@@ -19,7 +19,7 @@ router.get('/getSessionValue', (req, res) => {
     return res.send({ response: "OK" });
 })
 
-router.get('/profile', (req, res) => {
+router.get('/current-user', (req, res) => {
     // check if user is logged in
     if (req.session.loggedin) {
         const { username } = req.session;

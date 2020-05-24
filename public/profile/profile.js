@@ -1,7 +1,7 @@
 //console.log('test');
 
 $(document).ready(function () {
-    $.get("/profile/", function (data) {
+    $.get("/current-user/", function (data) {
         //console.log(data);
         $('#username').html(data.username),
         $('#password').html(data.password),

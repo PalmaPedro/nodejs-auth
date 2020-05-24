@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     return res.send(navbarPage + homePage + footerPage);
 });
 
-app.get('/test', (req, res) => {
+app.get('/profile', (req, res) => {
     return res.send(navbarPage + profilePage);
 });
 
