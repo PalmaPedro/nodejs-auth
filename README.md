@@ -15,9 +15,11 @@ and type in the browser
 http://localhost:3000/
 ```
 
+Use your mysql credentials
+
 ## Usage
 
-1 - Start by signup a new user. The new user will receive a confirmation email for account activation. 
+1 - Start by signing up a new user. The new user will receive a confirmation email for account activation. 
 2- Newly created user will be added to mysql database, but it is not 'active' yet.
 3- Follow the confirmation link. A message should be displayed, which means the account is now 'active'
 4- If you check the database, you will see the status is now 'active'.
